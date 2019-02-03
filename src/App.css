@@ -1,32 +1,68 @@
+@import url("~antd/dist/antd.min.css");
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.map-location-area,
+.map-location-container,
+.ant-row,
+.map-holder,
+.locations-holder,
+.location-container,
+.location-card {
+  height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.location-container {
+  height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+.map-holder {
+  height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media(max-width:768px) {
+  .location-container {
+    height: 70vh;
   }
-  to {
-    transform: rotate(360deg);
+
+  .map-holder {
+    height: 30vh;
   }
+}
+
+.location-container .ant-card-head-title {
+  color: #1890ff;
+}
+
+.location-card .ant-card-body {
+  text-align: left;
+  padding: 14px;
+}
+
+.location-card .ant-card-head {
+  padding: 0 14px;
+}
+
+.location-container .container-card {
+  height: 100%;
+  overflow: auto;
+  border-radius: 0;
+}
+
+
+.nowrap-ellip {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+.search-drawer .search-box-holder {
+  height: 5em;
+}
+
+.search-drawer .map-container {
+  height: 30em !important;
 }
