@@ -28,7 +28,7 @@ class LocationContainer extends Component {
                 dispatch(initLocations(arrayToMap(response.data, loct => loct.id)));
             }
         }, error => {
-            console.log(error);
+            message.error('An erro occured while fetching locations');
         }).then(() => {
             this.setState({ fetchingLocations: false });
         });
