@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import LocationApi from '../../../api/LocationApi';
-import { addOrUpdateLocation } from '../../../actions/locationActions';
+import { addNewLocation } from '../../../actions/locationActions';
 import { Button, message } from 'antd';
 import MapSearchDrawer from './MapSearch/MapSearchDrawer';
 
@@ -10,7 +10,6 @@ export class AddMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            requestingServer: false,
             selectedLocation: null,
             redirectToReturn: false
         }
@@ -31,7 +30,7 @@ export class AddMap extends Component {
         let { dispatch, locationData } = this.props;
 
         if (!selectedLocation) {
-            message.warn('No any location is selected');
+            message.warn('Please select a location to add');
             return;
         }
 
@@ -40,20 +39,10 @@ export class AddMap extends Component {
             return;
         }
 
-        this.setState({ requestingServer: true });
-        this.locationApi.AddNew(selectedLocation, respone => {
-            if (respone.data && respone.data.id) {
-                dispatch(addOrUpdateLocation(respone.data));
-                this.setState({
-                    selectedLocation: null,
-                    redirectToReturn: true
-                });
-                message.success('Location added successfully')
-            }
-        }, () => {
-            message.error("Failed to add new location");
-        }, () => {
-            this.setState({ requestingServer: false });
+        dispatch(addNewLocation(selectedLocation));
+        this.setState({
+            selectedLocation: null,
+            redirectToReturn: true
         });
     }
 
@@ -69,16 +58,15 @@ export class AddMap extends Component {
     }
 
     render() {
-        let { selectedLocation, requestingServer } = this.state;
+        let { selectedLocation } = this.state;
         return (
             <div className="add-location">
                 <MapSearchDrawer
                     visible={true}
-                    disabled={requestingServer}
                     locations={[selectedLocation]}
                     onLocationSelect={this.onLocationSelect}
-                    onClose = {this.onClose}
-                    footerAction={<Button loading={requestingServer} disabled={requestingServer} onClick={this.onAddMap} type="primary">Add Map</Button>}
+                    onClose={this.onClose}
+                    footerAction={<Button onClick={this.onAddMap} type="primary">Add Map</Button>}
                 />
                 {this.handleRedirect()}
             </div>
