@@ -3,17 +3,18 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'antd';
 import { GOOGLE_MAP_URL } from '../../../common/constants';
 import BasicMap from '../../../components/GoogleMap/BasicMap';
-import LocationContainer from './LocationList/LocationConainer';
+import LocationContainer from './LocationList/LocationContainer';
 
 class MapAndLocationContainer extends PureComponent {
     render() {
+        let {locationData} = this.props;
         return (
             <div className="map-location-container" >
                 <Row>
                     <Col className="map-holder" lg={12} md={12} sm={24}>
                         <BasicMap
                             isMarkerShown
-                            locations={[...this.props.locationData.values()]}
+                            locations={[...locationData.values()]}
                             googleMapURL={GOOGLE_MAP_URL}
                             loadingElement={<div className="map-loading-div" style={{ height: '100%' }} />}
                             containerElement={<div className="map-container" style={{ height: '100%' }} />}
