@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import LocationApi from '../../../api/LocationApi';
-import { addOrUpdateLocation } from '../../../actions/locationActions';
+import { updateLocation } from '../../../actions/locationActions';
 import { Button, message } from 'antd';
 import MapSearchDrawer from './MapSearch/MapSearchDrawer';
 
 
-class EditMap extends Component {
+export class EditMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            requestingServer: false,
             selectedLocation: null,
             redirectToReturn: false
         }
@@ -19,12 +18,17 @@ class EditMap extends Component {
         this.locationApi = new LocationApi();
 
         this.onUpdateMap = this.onUpdateMap.bind(this);
+        this.onClose = this.onClose.bind(this);
         this.onLocationSelect = this.onLocationSelect.bind(this);
     }
 
     componentDidMount() {
         let { match, locationData } = this.props;
         let selectedLocation = locationData.get(match.params.id);
+        if (!selectedLocation) {
+            message.warn('Oops! looks like select location not exist');
+            this.setState({ redirectToReturn: true });
+        }
         this.setState({ selectedLocation });
     }
 
@@ -40,34 +44,28 @@ class EditMap extends Component {
         });
     }
 
+    onClose() {
+        this.setState({ redirectToReturn: true });
+    }
+
     onUpdateMap() {
         let { selectedLocation } = this.state
         let { dispatch, locationData } = this.props;
 
         if (!selectedLocation) {
-            message.warn('No any location is selected');
+            message.warn('Please select a location to add');
             return;
         }
 
         if (!locationData.has(selectedLocation.id)) {
-            message.warn('Selected location not exist');
+            message.warn('Oops! looks like select location not exist');
             return;
         }
 
-        this.setState({ requestingServer: true });
-        this.locationApi.Update(selectedLocation, respone => {
-            if (respone.data && respone.data.id) {
-                dispatch(addOrUpdateLocation(respone.data));
-                this.setState({
-                    selectedLocation: null,
-                    redirectToReturn: true
-                });
-                message.success('Location updated successfully');
-            }
-        }, () => {
-            message.error("Failed to update location");
-        }, () => {
-            this.setState({ requestingServer: false });
+        dispatch(updateLocation(selectedLocation));
+        this.setState({
+            selectedLocation: null,
+            redirectToReturn: true,
         });
     }
 
@@ -79,16 +77,16 @@ class EditMap extends Component {
     }
 
     render() {
-        let { selectedLocation, requestingServer } = this.state;
+        let { selectedLocation } = this.state;
         return (
             <div className="edit-location">
                 <MapSearchDrawer
                     visible={true}
-                    disabled={requestingServer}
                     locations={[selectedLocation]}
                     selectedLocation={selectedLocation}
                     onLocationSelect={this.onLocationSelect}
-                    footerAction={<Button loading={requestingServer} disabled={requestingServer} onClick={this.onUpdateMap} type="primary">Update Map</Button>}
+                    onClose={this.onClose}
+                    footerAction={<Button onClick={this.onUpdateMap} type="primary">Update Map</Button>}
                 />
                 {this.handleRedirect()}
             </div>
