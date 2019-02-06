@@ -9,8 +9,8 @@ var LocationApi = (function () {
         this.urlBuilder = new UrlBuilder(this.remoteOrigin, [this.basePathName])
     }
 
-    LocationApi.prototype.GetAll = function (onOk, onError) {
-        return axios.get(this.urlBuilder.Build(['list'])).then(onOk).catch(onError);
+    LocationApi.prototype.GetAll = function (onOk, onError, onAlways) {
+        return axios.get(this.urlBuilder.Build(['list'])).then(onOk).catch(onError).then(onAlways);
     }
 
     LocationApi.prototype.AddNew = function (location, onOk, onError, onAlways) {
