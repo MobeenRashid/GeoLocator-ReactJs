@@ -31,8 +31,40 @@ function fetchLocationsFailure() {
 
 function addOrUpdateLocation(location) {
     return {
-        type: actionTypes.FETCH_LOCATIONS_SUCCESS,
+        type: actionTypes.ADD_OR_UPDATE_LOCATION,
         location
+    }
+}
+
+function addNewLocation(location) {
+    return dispatch => {
+        let hideLoading = message.loading('Adding new location...');
+        new LocationApi().AddNew(location, respone => {
+            if (respone.data && respone.data.id) {
+                dispatch(addOrUpdateLocation(respone.data));
+                message.success('Location added successfully')
+            }
+        }, () => {
+            message.error("Failed to add new location");
+        }, () => {
+            hideLoading();
+        });
+    }
+}
+
+function updateLocation(location) {
+    return dispatch => {
+        let hideLoading = message.loading('Upadting location...');
+        new LocationApi().Update(location, respone => {
+            if (respone.data && respone.data.id) {
+                dispatch(addOrUpdateLocation(respone.data));
+                message.success('Location updated successfully')
+            }
+        }, () => {
+            message.error("Failed to update location");
+        }, () => {
+            hideLoading();
+        });
     }
 }
 
@@ -96,6 +128,8 @@ function fetchLocationsIfRequired() {
 export {
     fetchLocationsSuccess,
     addOrUpdateLocation,
+    addNewLocation,
+    updateLocation,
     deleteLocation,
     removeLocation,
     requestingLocationsStart as requestingLocations,
