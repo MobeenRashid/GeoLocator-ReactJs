@@ -66,7 +66,7 @@ class MapLocationSearch extends Component {
             <div className="search-box-holder">
                 <GoogleMapSearch
                     onPlaceSelect={this.onLocationSelect}>
-                    <Input disabled={this.props.disabled} placeholder="search location" value={searchInput} onChange={this.onChange}>
+                    <Input className="location-input" disabled={this.props.disabled} placeholder="search location" value={searchInput} onChange={this.onChange}>
                     </Input>
                 </GoogleMapSearch>
             </div>);
