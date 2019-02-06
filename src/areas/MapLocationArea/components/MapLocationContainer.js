@@ -7,14 +7,14 @@ import LocationContainer from './LocationList/LocationContainer';
 
 class MapAndLocationContainer extends PureComponent {
     render() {
-        let {locationData} = this.props;
+        let { locationData } = this.props;
         return (
             <div className="map-location-container" >
                 <Row>
                     <Col className="map-holder" lg={12} md={12} sm={24}>
                         <BasicMap
                             isMarkerShown
-                            locations={[...locationData.values()]}
+                            locations={locationData}
                             googleMapURL={GOOGLE_MAP_URL}
                             loadingElement={<div className="map-loading-div" style={{ height: '100%' }} />}
                             containerElement={<div className="map-container" style={{ height: '100%' }} />}

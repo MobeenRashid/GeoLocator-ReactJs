@@ -22,7 +22,7 @@ var LocationApi = (function () {
     }
 
     LocationApi.prototype.Delete = function (locationId, onOk, onError, onAlways) {
-        return axios.get(this.urlBuilder.Build(['delete', locationId])).then(onOk).catch(onError).then(onAlways);
+        return axios.delete(this.urlBuilder.Build(['delete', locationId])).then(onOk).catch(onError).then(onAlways);
     }
 
     return LocationApi;

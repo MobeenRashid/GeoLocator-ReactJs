@@ -28,13 +28,12 @@ export class AddMap extends Component {
     onAddMap() {
         let { selectedLocation } = this.state
         let { dispatch, locationData } = this.props;
-
         if (!selectedLocation) {
             message.warn('Please select a location to add');
             return;
         }
 
-        if (locationData.has(selectedLocation.id)) {
+        if (locationData.find(loct => loct.id === selectedLocation.id)) {
             message.warn('Location already exist');
             return;
         }

@@ -1,6 +1,5 @@
-import { Map } from 'immutable';
 
 export default {
-    requestingLocations:false,
-    locations: Map()
+    requestingLocations: false,
+    locations: []
 }

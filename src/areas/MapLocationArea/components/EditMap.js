@@ -24,7 +24,7 @@ export class EditMap extends Component {
 
     componentDidMount() {
         let { match, locationData } = this.props;
-        let selectedLocation = locationData.get(match.params.id);
+        let selectedLocation = locationData.find(loct => loct.id === match.params.id);
         if (!selectedLocation) {
             message.warn('Oops! looks like select location not exist');
             this.setState({ redirectToReturn: true });
@@ -57,8 +57,8 @@ export class EditMap extends Component {
             return;
         }
 
-        if (!locationData.has(selectedLocation.id)) {
-            message.warn('Oops! looks like select location not exist');
+        if (!locationData.find(loct => loct.id === selectedLocation.id)) {
+            message.warn('Oops! looks like selected location not exist');
             return;
         }
 

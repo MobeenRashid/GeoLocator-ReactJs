@@ -1,7 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 import LocationApi from '../api/LocationApi';
 import { message } from 'antd';
-import { arrayToMap } from '../utils/arrayUtils';
 
 function fetchLocationsSuccess(locations) {
     return {
@@ -12,13 +11,15 @@ function fetchLocationsSuccess(locations) {
 
 function requestingLocationsStart() {
     return {
-        type: actionTypes.REQUESTING_LOCATIONS_START
+        type: actionTypes.REQUESTING_LOCATIONS_START,
+        value: true
     }
 }
 
 function requestingLocationsComplete() {
     return {
-        type: actionTypes.REQUESTING_LOCATIONS_COMPLETE
+        type: actionTypes.REQUESTING_LOCATIONS_COMPLETE,
+        value: false
     }
 }
 
@@ -38,40 +39,40 @@ function addOrUpdateLocation(location) {
 
 function addNewLocation(location) {
     return dispatch => {
-        let hideLoading = message.loading('Adding new location...');
+        let hide = message.loading('Adding new location...');
         new LocationApi().AddNew(location, respone => {
+            hide();
             if (respone.data && respone.data.id) {
                 dispatch(addOrUpdateLocation(respone.data));
                 message.success('Location added successfully')
             }
         }, () => {
+            hide();
             message.error("Failed to add new location");
-        }, () => {
-            hideLoading();
         });
     }
 }
 
 function updateLocation(location) {
     return dispatch => {
-        let hideLoading = message.loading('Upadting location...');
+        let hide = message.loading('Upadting location...');
         new LocationApi().Update(location, respone => {
+            hide();
             if (respone.data && respone.data.id) {
                 dispatch(addOrUpdateLocation(respone.data));
                 message.success('Location updated successfully')
             }
         }, () => {
+            hide();
             message.error("Failed to update location");
-        }, () => {
-            hideLoading();
         });
     }
 }
 
-function removeLocation(id) {
+function removeLocation(location) {
     return {
         type: actionTypes.REMOVE_LOCATION,
-        id
+        location
     }
 }
 
@@ -79,14 +80,14 @@ function deleteLocation(id) {
     return (dispatch) => {
         const hide = message.loading('Deleting location...');
         new LocationApi().Delete(id, response => {
+            hide();
             if (response.data && response.data.id) {
-                return dispatch(removeLocation(response.data.id));
+                dispatch(removeLocation(response.data));
+                message.success('Location is deleted');
             }
         }, () => {
-            message.error("Failed to delete location");
-        }, () => {
             hide();
-            message.success('Location is deleted');
+            message.error("Failed to delete location");
         });
     }
 }
@@ -96,7 +97,7 @@ function fetchLocations() {
         dispatch(requestingLocationsStart());
         new LocationApi().GetAll(response => {
             if (response.data) {
-                return dispatch(fetchLocationsSuccess(arrayToMap(response.data, loct => loct.id)));
+                return dispatch(fetchLocationsSuccess(response.data));
             }
         }, (err) => {
             message.error('An erro occured while fetching locations');
@@ -108,7 +109,7 @@ function fetchLocations() {
 }
 
 function shouldFetchLocations(state) {
-    if (state.locations && state.locations.size === 0) {
+    if (state.locations && state.locations.length === 0) {
         return true;
     } else {
         return false;

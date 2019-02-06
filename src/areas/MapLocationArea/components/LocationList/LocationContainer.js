@@ -30,7 +30,7 @@ export class LocationContainer extends Component {
                     }>
                     <LocationGridList
                         fetchingData={requestingLocations}
-                        data={[...locationData.values()]}
+                        data={locationData}
                         onLocationDelete={this.props.onLocationDelete}>
                     </LocationGridList>
                 </Card>
@@ -52,7 +52,7 @@ const mapDispatchToProps = dispatch => {
             return dispatch(fetchLocationsIfRequired());
         },
         onLocationDelete: (id) => {
-            return deleteLocation(id)(dispatch);
+            return dispatch(deleteLocation(id));
         }
     }
 }
