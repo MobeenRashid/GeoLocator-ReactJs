@@ -1,6 +1,9 @@
 import { combineReducers } from "redux";
-import locations from './location/locationReducer'
+import { locationReducer, requestingLocationReducer } from './location/locationReducer'
 
-const appReducer = combineReducers({ locations, });
+const appReducer = combineReducers({
+    locations: locationReducer,
+    requestingLocations: requestingLocationReducer
+});
 
 export default appReducer;
