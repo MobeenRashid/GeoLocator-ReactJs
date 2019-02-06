@@ -5,7 +5,8 @@ import LocationApi from '../../../api/LocationApi';
 import { addOrUpdateLocation } from '../../../actions/locationActions';
 import { Button, message } from 'antd';
 import MapSearchDrawer from './MapSearch/MapSearchDrawer';
-class AddMap extends Component {
+
+export class AddMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,6 +18,7 @@ class AddMap extends Component {
         this.locationApi = new LocationApi();
 
         this.onAddMap = this.onAddMap.bind(this);
+        this.onClose = this.onClose.bind(this);
         this.onLocationSelect = this.onLocationSelect.bind(this);
     }
 
@@ -55,6 +57,10 @@ class AddMap extends Component {
         });
     }
 
+    onClose() {
+        this.setState({ redirectToReturn: true });
+    }
+
     handleRedirect() {
         let { redirectToReturn } = this.state;
         if (redirectToReturn) {
@@ -71,6 +77,7 @@ class AddMap extends Component {
                     disabled={requestingServer}
                     locations={[selectedLocation]}
                     onLocationSelect={this.onLocationSelect}
+                    onClose = {this.onClose}
                     footerAction={<Button loading={requestingServer} disabled={requestingServer} onClick={this.onAddMap} type="primary">Add Map</Button>}
                 />
                 {this.handleRedirect()}
@@ -79,7 +86,7 @@ class AddMap extends Component {
     }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
     return {
         locationData: state.locations
     }

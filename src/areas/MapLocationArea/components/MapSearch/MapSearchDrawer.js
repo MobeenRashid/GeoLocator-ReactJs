@@ -11,6 +11,7 @@ const MapSearchDrawer = (props) => {
             className="search-drawer"
             title="Search Location"
             placement="top"
+            onClose={props.onClose}
             visible={props.visible}
             height={window.innerHeight}
         >
