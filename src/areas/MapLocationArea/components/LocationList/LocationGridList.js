@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 const LocationGridList = (props) => (
     <Spin tip="loading..." spinning={props.fetchingData}>
-        <div className="location-list">
-            <List grid={{ gutter: 10, md: 3, sm: 2, xs: 2 }}
+        <div>
+            <List className="location-list" grid={{ gutter: 10, md: 3, sm: 2, xs: 2 }}
                 dataSource={props.data}
                 renderItem={item => (
                     <List.Item className="location-item">
