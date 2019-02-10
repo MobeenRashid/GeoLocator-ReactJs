@@ -3,7 +3,7 @@ import MapSearchBox from './MapSearchBox';
 import { GOOGLE_MAP_URL } from '../../common/constants';
 
 
-export class GoogleMapSearch extends Component {
+class GoogleMapSearch extends Component {
     constructor(props) {
         super(props);
         this.searchboxRef = null;
@@ -21,7 +21,7 @@ export class GoogleMapSearch extends Component {
 
     render() {
         return (<MapSearchBox
-            googleMapURL= {GOOGLE_MAP_URL}
+            googleMapURL={GOOGLE_MAP_URL}
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `0` }} />}
             mapElement={<div style={{ height: `100%` }} />}
@@ -32,3 +32,5 @@ export class GoogleMapSearch extends Component {
     }
 
 }
+
+export default GoogleMapSearch;
