@@ -3,20 +3,13 @@ import { Card } from 'antd';
 import { connect } from 'react-redux';
 import LocationGridList from './LocationGridList';
 import HeaderActions from './HeaderActions';
-import { deleteLocation, fetchLocationsIfRequired } from '../../../../actions/locationActions';
+import { deleteLocation } from '../../../../actions/locationActions';
 
 class LocationContainer extends Component {
     constructor(props) {
         super(props);
         this.containerRef = React.createRef();
     }
-
-
-    //#region Life Cycle Hooks
-    componentDidMount() {
-        this.props.onDidMount();
-    }
-    //#endregion
 
     render() {
         let { locationData, requestingLocations } = this.props;
@@ -48,9 +41,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onDidMount: () => {
-            return dispatch(fetchLocationsIfRequired());
-        },
         onLocationDelete: (id) => {
             return dispatch(deleteLocation(id));
         }
