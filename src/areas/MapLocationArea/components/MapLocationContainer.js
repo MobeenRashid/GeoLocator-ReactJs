@@ -30,7 +30,7 @@ class MapAndLocationContainer extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
     return {
         locationData: state.locations
     }
