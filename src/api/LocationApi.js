@@ -17,8 +17,8 @@ var LocationApi = (function () {
         return axios.post(this.urlBuilder.Build(['create']), location).then(onOk).catch(onError).then(onAlways);
     }
 
-    LocationApi.prototype.Update = function (location, onOk, onError, onAlways) {
-        return axios.put(this.urlBuilder.Build(['update']), location).then(onOk).catch(onError).then(onAlways);
+    LocationApi.prototype.Update = function (locationData, onOk, onError, onAlways) {
+        return axios.put(this.urlBuilder.Build(['update']), locationData).then(onOk).catch(onError).then(onAlways);
     }
 
     LocationApi.prototype.Delete = function (locationId, onOk, onError, onAlways) {
