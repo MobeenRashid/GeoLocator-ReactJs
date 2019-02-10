@@ -53,13 +53,19 @@ function addNewLocation(location) {
     }
 }
 
-function updateLocation(location) {
+function updateLocation(prevLocation, newLocation) {
     return dispatch => {
-        let hide = message.loading('Upadting location...');
-        new LocationApi().Update(location, respone => {
+        const locationApi = new LocationApi();
+        const locationData = {
+            prevLocation, newLocation
+        }
+
+        let hide = message.loading('Updating location...');
+        locationApi.Update(locationData, respone => {
             hide();
             if (respone.data && respone.data.id) {
                 dispatch(addOrUpdateLocation(respone.data));
+                dispatch(removeLocation(prevLocation));
                 message.success('Location updated successfully')
             }
         }, () => {
@@ -95,10 +101,13 @@ function deleteLocation(id) {
 function fetchLocations() {
     return dispatch => {
         dispatch(requestingLocationsStart());
-        new LocationApi().GetAll(response => {
-            if (response.data) {
+        const locationApi = new LocationApi();
+        return locationApi.GetAll(response => {
+            if (response.data && response.data.length) {
+                message.success('Locations are loaded');
                 return dispatch(fetchLocationsSuccess(response.data));
             }
+            message.info('No locations are available');
         }, (err) => {
             message.error('An erro occured while fetching locations');
             return dispatch(fetchLocationsFailure(err));

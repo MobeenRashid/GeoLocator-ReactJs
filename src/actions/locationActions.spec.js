@@ -29,19 +29,24 @@ describe('Location actions', () => {
         let store = configureStore(__mockState);
 
         var __potsDam = {
-            id: __mockLocationList[0].id,
+            id: '3',
             address: 'Potsdam',
             lat: '786',
             lng: '787'
         }
-    
+
         axios.put.mockImplementation(() => {
             return Promise.resolve({ data: __potsDam });
         });
 
-        await store.dispatch(actions.updateLocation(__potsDam));
-        const location = store.getState().locations.find(loct => loct && loct.id === __potsDam.id);
-        expect(location).toEqual(__potsDam);
+        await store.dispatch(actions.updateLocation(__mockLocationList[0], __potsDam));
+
+        let lastState = store.getState();
+        const newLocation = lastState.locations.find(loct => loct && loct.id === __potsDam.id);
+        const prevLocation = lastState.locations.find(loct => loct && loct.id === __mockLocationList[0].id);
+
+        expect(newLocation).toEqual(__potsDam);
+        expect(!!(prevLocation)).toBeFalsy();
     });
 
     test('Should delete location correctly', async () => {
