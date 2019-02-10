@@ -1,5 +1,5 @@
 import BasicMap from './BasicMap';
-import { GoogleMapSearch } from './GoogleMapSearch';
+import GoogleMapSearch from './GoogleMapSearch';
 
 
-export default { BasicMap, GoogleMapSearch };
+export { BasicMap, GoogleMapSearch };
