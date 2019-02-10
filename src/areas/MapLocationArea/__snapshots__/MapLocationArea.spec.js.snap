@@ -180,7 +180,6 @@ exports[`MapLocationArea Component Should render correctly 1`] = `
                             },
                           ]
                         }
-                        onDidMount={[Function]}
                         onLocationDelete={[Function]}
                         requestingLocations={false}
                       >
