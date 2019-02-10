@@ -28,12 +28,13 @@ export class AddMap extends Component {
     onAddMap() {
         let { selectedLocation } = this.state
         let { dispatch, locationData } = this.props;
+      
         if (!selectedLocation) {
             message.warn('Please select a location to add');
             return;
         }
 
-        if (locationData.find(loct => loct.id === selectedLocation.id)) {
+        if (locationData.find(loct => loct && loct.id === selectedLocation.id)) {
             message.warn('Location already exist');
             return;
         }
@@ -65,7 +66,7 @@ export class AddMap extends Component {
                     locations={[selectedLocation]}
                     onLocationSelect={this.onLocationSelect}
                     onClose={this.onClose}
-                    footerAction={<Button onClick={this.onAddMap} type="primary">Add Map</Button>}
+                    footerAction={<Button id="btnAddLocation" onClick={this.onAddMap} type="primary">Add Map</Button>}
                 />
                 {this.handleRedirect()}
             </div>
