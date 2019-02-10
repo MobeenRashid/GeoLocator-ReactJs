@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderActions component Should render correctly 1`] = `
+<button
+  class="ant-btn ant-btn-primary"
+  id="btnAddMap"
+  type="button"
+>
+  <a
+    href="/locations/addnew"
+  >
+    Add Map
+  </a>
+</button>
+`;
