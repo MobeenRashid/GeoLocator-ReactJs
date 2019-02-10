@@ -1,5 +1,5 @@
 import LocationApi from "./LocationApi";
-import { __mockLocationList } from "../../__mocks__/mockConstants";
+import { __mockLocationList } from "../../__mocks__/__mockState";
 
 const locationApi = new LocationApi();
 describe('Location API', () => {
