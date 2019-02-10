@@ -5,7 +5,7 @@ import LocationGridList from './LocationGridList';
 import HeaderActions from './HeaderActions';
 import { deleteLocation, fetchLocationsIfRequired } from '../../../../actions/locationActions';
 
-export class LocationContainer extends Component {
+class LocationContainer extends Component {
     constructor(props) {
         super(props);
         this.containerRef = React.createRef();
