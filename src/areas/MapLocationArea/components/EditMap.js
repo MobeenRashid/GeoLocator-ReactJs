@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import LocationApi from '../../../api/LocationApi';
 import { updateLocation } from '../../../actions/locationActions';
 import { Button, message } from 'antd';
 import MapSearchDrawer from './MapSearch/MapSearchDrawer';
 
 
-export class EditMap extends Component {
+class EditMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
             selectedLocation: null,
             redirectToReturn: false
         }
-
-        this.locationApi = new LocationApi();
 
         this.onUpdateMap = this.onUpdateMap.bind(this);
         this.onClose = this.onClose.bind(this);
@@ -24,12 +21,16 @@ export class EditMap extends Component {
 
     componentDidMount() {
         let { match, locationData } = this.props;
-        let selectedLocation = locationData.find(loct => loct.id === match.params.id);
-        if (!selectedLocation) {
-            message.warn('Oops! looks like select location not exist');
-            this.setState({ redirectToReturn: true });
+
+        if (locationData && match) {
+            let selectedLocation = locationData.find(loct => loct && loct.id === match.params.id);
+            if (!selectedLocation) {
+                message.warn('Oops! looks like selected location not exist');
+                this.setState({ redirectToReturn: true });
+                return;
+            }
+            this.setState({ selectedLocation });
         }
-        this.setState({ selectedLocation });
     }
 
     onLocationSelect(location) {
@@ -57,7 +58,7 @@ export class EditMap extends Component {
             return;
         }
 
-        if (!locationData.find(loct => loct.id === selectedLocation.id)) {
+        if (!locationData.find(loct => loct && loct.id === selectedLocation.id)) {
             message.warn('Oops! looks like selected location not exist');
             return;
         }
@@ -86,7 +87,7 @@ export class EditMap extends Component {
                     selectedLocation={selectedLocation}
                     onLocationSelect={this.onLocationSelect}
                     onClose={this.onClose}
-                    footerAction={<Button onClick={this.onUpdateMap} type="primary">Update Map</Button>}
+                    footerAction={<Button id="btnUpdateLocation" onClick={this.onUpdateMap} type="primary">Update Map</Button>}
                 />
                 {this.handleRedirect()}
             </div>
@@ -94,7 +95,7 @@ export class EditMap extends Component {
     }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
     return {
         locationData: state.locations
     }
