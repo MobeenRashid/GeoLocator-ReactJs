@@ -16,9 +16,10 @@ const LocationGridList = (props) => (
                                     <Link to={`locations/edit/${item.id}`}>
                                         <Icon type="edit" />
                                     </Link>,
-                                    <Popconfirm title="Are you sure you want to delete the location?" okText="yes" cancelText="no" onConfirm={() => { props.onLocationDelete(item.id) }}>
+                                    <Popconfirm id="deletePopConfirm" title="Are you sure you want to delete the location?" okText="yes" cancelText="no" onConfirm={() => { props.onLocationDelete(item.id) }}>
                                         <Icon type="delete" />
-                                    </Popconfirm>]
+                                    </Popconfirm>
+                                ]
                             }>
                             <p className="nowrap-ellip"><b>{item.address}</b></p>
                             <p className="nowrap-ellip">Latitude: {item.lat}</p>
