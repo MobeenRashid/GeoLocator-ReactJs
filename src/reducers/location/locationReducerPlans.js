@@ -13,25 +13,25 @@ var locationReducerPlans = (function () {
     }
 
     function addOrUpdateLocation(locations, action) {
-        let locationsCloned = Object.assign([], locations, [action.location]);
+        let locationsCopy = Object.assign([], locations);
 
-        let loctIndex = locationsCloned.findIndex(loct => loct.id === action.location.id);
+        let loctIndex = locationsCopy.findIndex(loct => loct.id === action.location.id);
         if (loctIndex > -1) {
-            locationsCloned[loctIndex] = action.location;
+            locationsCopy[loctIndex] = action.location;
         } else {
-            locationsCloned.push(action.location);
+            locationsCopy.push(action.location);
         }
-        return locationsCloned;
+        return locationsCopy;
     }
 
     function removeLocation(locations, action) {
-        let locationsCloned = Object.assign([], locations);
-        debugger;
-        let loctIndex = locationsCloned.findIndex(loct => loct.id === action.location.id);
+        let locationsCopy = Object.assign([], locations);
+       
+        let loctIndex = locationsCopy.findIndex(loct => loct.id === action.location.id);
         if (loctIndex > -1) {
-            locationsCloned.splice(loctIndex, 1);
+            locationsCopy.splice(loctIndex, 1);
         }
-        return locationsCloned;
+        return locationsCopy;
     }
 
     return {
