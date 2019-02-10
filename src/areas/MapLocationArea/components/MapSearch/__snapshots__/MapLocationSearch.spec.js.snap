@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map location search Should render correctly 1`] = `
+<MapLocationSearch>
+  <div
+    className="search-box-holder"
+  >
+    <GoogleMapSearch
+      onPlaceSelect={[Function]}
+    >
+      <withScriptjs(withGoogleMap(Component))
+        containerElement={
+          <div
+            style={
+              Object {
+                "height": "0",
+              }
+            }
+          />
+        }
+        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDqC2TJWsyldn46K-rzxisTo9YRACImBE&v=3.exp&libraries=geometry,drawing,places"
+        loadingElement={
+          <div
+            style={
+              Object {
+                "height": "100%",
+              }
+            }
+          />
+        }
+        mapElement={
+          <div
+            style={
+              Object {
+                "height": "100%",
+              }
+            }
+          />
+        }
+        onPlacesChanged={[Function]}
+        onSearchBoxMounted={[Function]}
+      >
+        <div
+          style={
+            Object {
+              "height": "100%",
+            }
+          }
+        />
+      </withScriptjs(withGoogleMap(Component))>
+    </GoogleMapSearch>
+  </div>
+</MapLocationSearch>
+`;

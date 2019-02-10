@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Input } from 'antd';
-import { GoogleMapSearch } from '../../../../components/GoogleMap/GoogleMapSearch';
-
+import GoogleMapSearch from '../../../../components/GoogleMap/GoogleMapSearch';
 const defaultState = {
     defaultLocation: null,
     searchInput: null
