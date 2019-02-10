@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-//import TestRenderer from 'react-test-renderer';
+import TestRenderer from 'react-test-renderer';
 import MapLocationSearch from './MapLocationSearch';
 
 describe("Map location search", () => {

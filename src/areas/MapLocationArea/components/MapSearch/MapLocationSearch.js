@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Input } from 'antd';
 import GoogleMapSearch from '../../../../components/GoogleMap/GoogleMapSearch';
-const defaultState = {
+const DEFAULT_STATE = {
     defaultLocation: null,
     searchInput: null
 }
@@ -10,15 +10,14 @@ class MapLocationSearch extends Component {
 
     constructor(props) {
         super(props);
-        this.state = defaultState;
+        this.state = DEFAULT_STATE;
 
         this.onLocationSelect = this.onLocationSelect.bind(this);
         this.onChange = this.onChange.bind(this);
     }
-
     static getDerivedStateFromProps(props, state) {
         if (props.reset) {
-            return defaultState;
+            return DEFAULT_STATE;
         }
 
         let searchInput;
