@@ -7,8 +7,8 @@ import { fetchLocationsIfRequired } from '../../actions/locationActions';
 class MapLocationArea extends Component {
 
     //#region Life Cycle Hooks
-    async componentDidMount() {
-        await this.props.onDidMount();
+    componentDidMount() {
+        this.props.onDidMount();
     }
     //#endregion
 
