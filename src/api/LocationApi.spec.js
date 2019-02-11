@@ -1,7 +1,7 @@
 import LocationApi from "./LocationApi";
 import { __mockLocationList } from "../../__mocks__/__mockState";
 
-const locationApi = new LocationApi();
+const locationApi = new LocationApi('http://localhost:5000');
 describe('Location API', () => {
 
     test('Should add location correctly', async () => {
