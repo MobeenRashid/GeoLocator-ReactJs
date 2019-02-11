@@ -2,6 +2,8 @@ import * as actionTypes from '../constants/actionTypes';
 import LocationApi from '../api/LocationApi';
 import { message } from 'antd';
 
+const locationApi = new LocationApi();
+
 function fetchLocationsSuccess(locations) {
     return {
         type: actionTypes.FETCH_LOCATIONS_SUCCESS,
@@ -40,7 +42,7 @@ function addOrUpdateLocation(location) {
 function addNewLocation(location) {
     return dispatch => {
         let hide = message.loading('Adding new location...');
-        new LocationApi().AddNew(location, respone => {
+        return locationApi.AddNew(location, respone => {
             hide();
             if (respone.data && respone.data.id) {
                 dispatch(addOrUpdateLocation(respone.data));
@@ -55,7 +57,6 @@ function addNewLocation(location) {
 
 function updateLocation(prevLocation, newLocation) {
     return dispatch => {
-        const locationApi = new LocationApi();
         const locationData = {
             prevLocation, newLocation
         }
@@ -85,7 +86,7 @@ function removeLocation(location) {
 function deleteLocation(id) {
     return (dispatch) => {
         const hide = message.loading('Deleting location...');
-        new LocationApi().Delete(id, response => {
+        locationApi.Delete(id, response => {
             hide();
             if (response.data && response.data.id) {
                 dispatch(removeLocation(response.data));
@@ -101,7 +102,6 @@ function deleteLocation(id) {
 function fetchLocations() {
     return dispatch => {
         dispatch(requestingLocationsStart());
-        const locationApi = new LocationApi();
         return locationApi.GetAll(response => {
             if (response.data && response.data.length) {
                 message.success('Locations are loaded');

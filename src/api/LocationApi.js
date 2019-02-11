@@ -1,9 +1,9 @@
-import environment from '../common/environment'
 import UrlBuilder from '../builder/UrlBuilder';
 import axios from 'axios';
 
 var LocationApi = (function () {
-    function LocationApi(remoteOrigin = environment.remoteOrigin, basePathName = "api/location") {
+    const env = process.env;
+    function LocationApi(remoteOrigin = env.REACT_APP_REMOTE_ORIGIN, basePathName = "api/location") {
         this.remoteOrigin = remoteOrigin;
         this.basePathName = basePathName;
         this.urlBuilder = new UrlBuilder(this.remoteOrigin, [this.basePathName])

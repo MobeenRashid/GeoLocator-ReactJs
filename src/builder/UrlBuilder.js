@@ -1,7 +1,7 @@
-import environment from "../common/environment";
 
 var UrlBuilder = (function () {
-    function UrlBuilder(origin = environment.remoteOrigin, pathSegments = [], queryParams = []) {
+    const env = process.env;
+    function UrlBuilder(origin = env.REACT_APP_REMOTE_ORIGIN, pathSegments = [], queryParams = []) {
         this.UrlOptions = {
             Origin: origin,
             PathSegments: pathSegments,
@@ -33,7 +33,7 @@ var UrlBuilder = (function () {
         if (pathSegments.length > 0) {
             url = url + '/' + pathSegments.join('/');
         }
-      
+
         //assemble query params
         var queryParams = this.UrlOptions.QueryStringParams;
         queryParams = queryParams.concat(specialQueryParams);
