@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import locationAreaRoutes from './location.area.routes';
 import { connect } from 'react-redux';
 import { fetchLocationsIfRequired } from '../../actions/locationActions';
+import { getGoogleMapKey } from '../../actions/authActions';
 
 class MapLocationArea extends Component {
 
@@ -23,10 +24,12 @@ MapLocationArea.propTypes = {
     onDidMount: PropTypes.func.isRequired
 }
 
+
 const mapDispatchToProps = dispatch => {
     return {
-        onDidMount: async () => {
-            return dispatch(fetchLocationsIfRequired());
+        onDidMount: () => {
+            dispatch(fetchLocationsIfRequired());
+            dispatch(getGoogleMapKey());
         }
     }
 }
