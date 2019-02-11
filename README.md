@@ -3,16 +3,16 @@
 This application uses redux state container to store and manage application state redux store.
 As this is a simple demo application, redux is only introduced to demonstrate how to integrate redux in enterprise react applications.
 
-##React Router
-This application uses ###react-router for routing react components. As this is demo application, react router is only introduced to demonstrate how to impelment and manage component routing in enterprise react applications. To learn more about react-router, check the offical [docs](https://reacttraining.com/react-router/web/example/basic) 
+## React Router
+This application uses `react-router` for routing react components. As this is demo application, react router is only introduced to demonstrate how to impelment and manage component routing in enterprise react applications. To learn more about react-router, check the offical [docs](https://reacttraining.com/react-router/web/example/basic) 
 
-##Jest
-This application uses ###Jest testing framework developed by Facebook. Jest is packed with many cool features like snapshot testing, easy mocking, and fleunt assertions. Jest is a recommended framework to test ReactJs applications and its almost config free, on most JavaScript projects. To learn more about Jest, check the offical [docs](https://jestjs.io)
+## Jest
+This application uses `Jest` testing framework developed by Facebook. Jest is packed with many cool features like snapshot testing, easy mocking, and fleunt assertions. Jest is a recommended framework to test ReactJs applications and its almost config free, on most JavaScript projects. To learn more about Jest, check the offical [docs](https://jestjs.io)
 
-##EnzymeJs
+## EnzymeJs
 Enzyme is a JavaScript testing utility for React. Enzyme makes it easier to assert, manipulate, and traverse your React Components. Both Jest and Enzyme are specifically designed to test React applications, Jest can be used with any other Javascript app but Enzyme only works with React. Enzyme makes react component testing very easy. To learn more about test, check the offical [docs](https://airbnb.io/enzyme/docs/api/) 
 
-##Google Map API Key
+## Google Map API Key
 This application don't store Google Map API key in app config, environment varaibles or anywhere in application code for security reasons. The app loads the api key from server and only keeps it in memory as long as the application is running. The application don't store the api key in web storage and cookies as these places can also be inspected using developer tools.
 
 
