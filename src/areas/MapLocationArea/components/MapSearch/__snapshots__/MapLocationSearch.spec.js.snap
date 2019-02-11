@@ -1,54 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Map location search Should render correctly 1`] = `
-<MapLocationSearch>
-  <div
-    className="search-box-holder"
-  >
-    <GoogleMapSearch
-      onPlaceSelect={[Function]}
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <MapLocationSearch>
+    <div
+      className="search-box-holder"
     >
-      <withScriptjs(withGoogleMap(Component))
-        containerElement={
-          <div
-            style={
-              Object {
-                "height": "0",
-              }
-            }
-          />
-        }
-        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDqC2TJWsyldn46K-rzxisTo9YRACImBE&v=3.exp&libraries=geometry,drawing,places"
-        loadingElement={
-          <div
-            style={
-              Object {
-                "height": "100%",
-              }
-            }
-          />
-        }
-        mapElement={
-          <div
-            style={
-              Object {
-                "height": "100%",
-              }
-            }
-          />
-        }
-        onPlacesChanged={[Function]}
-        onSearchBoxMounted={[Function]}
+      <Connect(GoogleMapSearchBox)
+        onLocationSelect={[Function]}
       >
-        <div
-          style={
-            Object {
-              "height": "100%",
-            }
-          }
-        />
-      </withScriptjs(withGoogleMap(Component))>
-    </GoogleMapSearch>
-  </div>
-</MapLocationSearch>
+        <GoogleMapSearchBox
+          dispatch={[Function]}
+          mapKey=""
+          onLocationSelect={[Function]}
+        >
+          <Input
+            disabled={true}
+            placeholder="Loading Google Map Search..."
+            type="text"
+          >
+            <input
+              className="ant-input ant-input-disabled"
+              disabled={true}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Loading Google Map Search..."
+              type="text"
+              value=""
+            />
+          </Input>
+        </GoogleMapSearchBox>
+      </Connect(GoogleMapSearchBox)>
+    </div>
+  </MapLocationSearch>
+</Provider>
 `;

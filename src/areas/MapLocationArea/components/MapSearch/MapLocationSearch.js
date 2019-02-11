@@ -1,48 +1,13 @@
 import React, { Component } from 'react';
-import { Input } from 'antd';
-import GoogleMapSearch from '../../../../components/GoogleMap/GoogleMapSearch';
-const DEFAULT_STATE = {
-    defaultLocation: null,
-    searchInput: null
-}
+import GoogleMapSearchBox from '../../../../components/GoogleMap/GoogleMapSearchBox';
+
 
 class MapLocationSearch extends Component {
 
     constructor(props) {
         super(props);
-        this.state = DEFAULT_STATE;
 
         this.onLocationSelect = this.onLocationSelect.bind(this);
-        this.onChange = this.onChange.bind(this);
-    }
-    static getDerivedStateFromProps(props, state) {
-        if (props.reset) {
-            return DEFAULT_STATE;
-        }
-
-        let searchInput;
-        if (state.searchInput === null || state.searchInput === undefined) {
-            searchInput = (props.defaultLocation && props.defaultLocation.address);
-        }
-        return {
-            defaultLocation: props.defaultLocation,
-            searchInput: searchInput || state.searchInput
-        }
-    }
-
-    componentDidMount() {
-        let { defaultLocation } = this.state;
-        defaultLocation = defaultLocation || this.props.defaultLocation;
-        let searchInput = (defaultLocation && defaultLocation.address);
-
-        this.setState({ searchInput });
-    }
-
-
-    onChange(e) {
-        if (e && e.target) {
-            this.setState({ searchInput: e.target.value });
-        }
     }
 
     onLocationSelect(place) {
@@ -54,20 +19,16 @@ class MapLocationSearch extends Component {
                 lng: place.geometry.location.lng()
             };
             this.props.onLocationSelect(selectedLocation);
-            this.setState({ searchInput: selectedLocation.address });
         }
     }
 
     render() {
-        let { searchInput } = this.state;
-        return (
-            <div className="search-box-holder">
-                <GoogleMapSearch
-                    onPlaceSelect={this.onLocationSelect}>
-                    <Input className="location-input" disabled={this.props.disabled} placeholder="search location" value={searchInput} onChange={this.onChange}>
-                    </Input>
-                </GoogleMapSearch>
-            </div>);
+        return (<div className="search-box-holder">
+            <GoogleMapSearchBox
+                {...this.props}
+                onLocationSelect={this.onLocationSelect}>
+            </GoogleMapSearchBox>
+        </div>);
     }
 }
 export default MapLocationSearch;
