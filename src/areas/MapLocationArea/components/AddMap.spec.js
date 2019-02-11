@@ -28,7 +28,7 @@ describe('AddMap Component', () => {
         expect(component).toMatchSnapshot();
     });
 
-    test("Should add location correctly", () => {
+    test.skip("Should add location correctly", () => {
         const store = configureStore(__mockState);
         const component = mount(<Provider store={store}>
             <BrowserRouter>
