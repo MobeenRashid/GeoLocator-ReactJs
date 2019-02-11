@@ -1,83 +1,100 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Map search drawer Should render correctly 1`] = `
-<BrowserRouter>
-  <Router
-    history={
-      Object {
-        "action": "POP",
-        "block": [Function],
-        "createHref": [Function],
-        "go": [Function],
-        "goBack": [Function],
-        "goForward": [Function],
-        "length": 1,
-        "listen": [Function],
-        "location": Object {
-          "hash": "",
-          "pathname": "/",
-          "search": "",
-          "state": undefined,
-        },
-        "push": [Function],
-        "replace": [Function],
-      }
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
     }
-  >
-    <MapSearchDrawer>
-      <Component
-        className="search-drawer"
-        height={768}
-        placement="top"
-        title="Search Location"
-      >
-        <Drawer
-          className="search-drawer"
-          closable={true}
-          getPrefixCls={[Function]}
-          height={768}
-          level={null}
-          mask={true}
-          maskClosable={true}
-          placement="top"
-          prefixCls="ant-drawer"
-          renderEmpty={[Function]}
-          title="Search Location"
-          width={256}
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(MapSearchDrawer)>
+        <MapSearchDrawer
+          dispatch={[Function]}
+          mapKey=""
         >
-          <Drawer
+          <Component
             className="search-drawer"
-            closable={true}
-            duration=".3s"
-            ease="cubic-bezier(0.78, 0.14, 0.15, 0.86)"
-            firstEnter={false}
-            getContainer="body"
-            getPrefixCls={[Function]}
-            handler={false}
             height={768}
-            level={null}
-            mask={true}
-            maskClosable={true}
-            maskStyle={Object {}}
-            onChange={[Function]}
-            onHandleClick={[Function]}
-            onMaskClick={[Function]}
             placement="top"
-            prefixCls="ant-drawer"
-            renderEmpty={[Function]}
-            showMask={true}
-            style={
-              Object {
-                "transform": undefined,
-                "zIndex": undefined,
-              }
-            }
             title="Search Location"
-            wrapperClassName=""
-          />
-        </Drawer>
-      </Component>
-    </MapSearchDrawer>
-  </Router>
-</BrowserRouter>
+          >
+            <Drawer
+              className="search-drawer"
+              closable={true}
+              getPrefixCls={[Function]}
+              height={768}
+              level={null}
+              mask={true}
+              maskClosable={true}
+              placement="top"
+              prefixCls="ant-drawer"
+              renderEmpty={[Function]}
+              title="Search Location"
+              width={256}
+            >
+              <Drawer
+                className="search-drawer"
+                closable={true}
+                duration=".3s"
+                ease="cubic-bezier(0.78, 0.14, 0.15, 0.86)"
+                firstEnter={false}
+                getContainer="body"
+                getPrefixCls={[Function]}
+                handler={false}
+                height={768}
+                level={null}
+                mask={true}
+                maskClosable={true}
+                maskStyle={Object {}}
+                onChange={[Function]}
+                onHandleClick={[Function]}
+                onMaskClick={[Function]}
+                placement="top"
+                prefixCls="ant-drawer"
+                renderEmpty={[Function]}
+                showMask={true}
+                style={
+                  Object {
+                    "transform": undefined,
+                    "zIndex": undefined,
+                  }
+                }
+                title="Search Location"
+                wrapperClassName=""
+              />
+            </Drawer>
+          </Component>
+        </MapSearchDrawer>
+      </Connect(MapSearchDrawer)>
+    </Router>
+  </BrowserRouter>
+</Provider>
 `;
