@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MapSearchBox from './MapSearchBox';
-import { GOOGLE_MAP_URL } from '../../common/constants';
 
+const appSettings = require('../../app.settings');
 
 class GoogleMapSearch extends Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class GoogleMapSearch extends Component {
 
     render() {
         return (<MapSearchBox
-            googleMapURL={GOOGLE_MAP_URL}
+            googleMapURL={appSettings.google_map_url}
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `0` }} />}
             mapElement={<div style={{ height: `100%` }} />}

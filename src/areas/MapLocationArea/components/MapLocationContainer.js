@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'antd';
-import { GOOGLE_MAP_URL } from '../../../common/constants';
 import BasicMap from '../../../components/GoogleMap/BasicMap';
 import LocationContainer from './LocationList/LocationContainer';
+
+const appSetting = require('../../../app.settings');
 
 class MapAndLocationContainer extends PureComponent {
     render() {
@@ -15,7 +16,7 @@ class MapAndLocationContainer extends PureComponent {
                         <BasicMap
                             isMarkerShown
                             locations={locationData}
-                            googleMapURL={GOOGLE_MAP_URL}
+                            googleMapURL={appSetting.google_map_url}
                             loadingElement={<div className="map-loading-div" style={{ height: '100%' }} />}
                             containerElement={<div className="map-container" style={{ height: '100%' }} />}
                             mapElement={<div className="map-element" style={{ height: '100%' }} />}
