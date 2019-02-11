@@ -1,5 +1,6 @@
 
 export default {
     requestingLocations: false,
-    locations: []
+    locations: [],
+    googleMapKey:''
 }
